@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  
+  <localRepository>${user.home}/.m2/repository</localRepository>
+  <interactiveMode>true</interactiveMode>
+  <offline>false</offline>
+
+  <!-- Habilitar en caso de ser necesario
+  <proxies>
+    <proxy>
+      <id>optional</id>
+      <active>true</active>
+      <protocol>http</protocol>      
+      <host>my.proxy.com</host>
+      <port>80</port>
+      <nonProxyHosts>my.nexus.server.com|local.net</nonProxyHosts>
+    </proxy>
+  </proxies>
+  -->
+
+  <!-- Usar mirror o profile (local)        
+      <mirror>
+        <id>maven-central</id>
+        <name>maven-central</name>
+        <url>https://my.nexus.server.com/nexus/repository/maven-central</url>
+        <mirrorOf>central</mirrorOf>
+      </mirror>
+      <mirror>
+        <id>maven-central-snapshots</id>
+        <name>maven-central-snapshots</name>
+        <url>https://my.nexus.server.com/nexus/repository/maven-central-snapshots</url>
+        <mirrorOf>snapshots</mirrorOf>
+      </mirror>       
+  -->
+  <mirrors>
+    <mirror>
+      <id>repo1</id>
+      <name>Repo1</name>
+			<!--<url>https://repo1.maven.org/maven2/</url>-->
+			<url>https://repo.maven.apache.org/maven2</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+    <mirror>
+      <id>repo2</id>
+      <name>Repo2</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <mirrorOf>*</mirrorOf>
+    </mirror>    
+    <mirror>
+      <id>mvnrepo</id>
+      <name>mvnrepo</name>
+      <url>http://mvnrepository.com/artifact</url>
+      <mirrorOf>abc</mirrorOf>
+    </mirror>
+  </mirrors>
+
+  <!-- Perfil con repositorio en servidor propio
+  <profiles>
+    <profile>
+      <id>local</id>
+      <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://my.nexus.server.com/nexus/repository/maven-central</url>
+        </repository>
+        <repository>
+            <id>snapshots</id>
+            <url>https://my.nexus.server.com/nexus/repository/maven-central-snapshots</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+          <pluginRepository>
+            <id>central</id>
+            <name>Maven Plugin Repository</name>
+            <url>https://my.nexus.server.com/nexus/repository/maven-central</url>
+            <layout>default</layout>
+            <snapshots>
+              <enabled>false</enabled>
+            </snapshots>
+            <releases>
+              <updatePolicy>never</updatePolicy>
+            </releases>
+          </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>local</activeProfile>
+  </activeProfiles>
+  -->
+</settings>

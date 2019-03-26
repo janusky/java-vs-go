@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    #restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: test1234
+    volumes:
+      - ./config/db.sql:/docker-entrypoint-initdb.d/1-init.sql
+
+  app-go:
+    #restart: always
+    build:
+      context: .
+      args:
+        - http_proxy=http://my.proxy.com:80
+        - https_proxy=http://my.proxy.com:80
+        - HTTP_PROXY=http://my.proxy.com:80
+        - HTTPS_PROXY=http://my.proxy.com:80
+    ports:
+      - 8000:8000
+    links:
+      - db
+    environment:
+      POSTGRES_HOST: db
+

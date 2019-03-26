@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    #restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: test1234
+    volumes:
+      - ../config/db.sql:/docker-entrypoint-initdb.d/1-init.sql
+
+  app-go:
+    image: app-go
+    #restart: always
+    ports:
+      - 8000:8000
+    links:
+      - db
+    environment:
+      POSTGRES_HOST: db
